@@ -1,25 +1,28 @@
 // main.js
 import SlimSelect from 'slim-select';
-
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 import { fetchBreeds, fetchCatByBreed } from "./js/cat-api.js";
+
 const breedSelect = document.querySelector(".breed-select");
 const catInfoDiv = document.querySelector(".cat-info");
 const loader = document.querySelector(".loader");
 const error = document.querySelector(".error");
 
+// Створюємо SlimSelect для стилізації селекту
+const slim = new SlimSelect({
+  select: ".breed-select"
+});
+
 // Заповнюємо селект порід при завантаженні сторінки
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const breeds = await fetchBreeds();
-    breeds.forEach((breed) => {
-      const option = document.createElement("option");
-      option.value = breed.id;
-      option.text = breed.name;
-      breedSelect.appendChild(option);
-    });
+
+    // Очищаємо та оновлюємо опції у SlimSelect
+    slim.setData(breeds.map(breed => ({ text: breed.name, value: breed.id })));
+
   } catch (error) {
     console.error("Помилка отримання порід:", error);
   }
