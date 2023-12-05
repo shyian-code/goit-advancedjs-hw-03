@@ -1,5 +1,6 @@
 // main.js
 import SlimSelect from 'slim-select';
+import 'slim-select/dist/slimselect.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
@@ -9,6 +10,20 @@ const breedSelect = document.querySelector("select.breed-select");
 const catInfoDiv = document.querySelector("div.cat-info");
 const loader = document.querySelector("p.loader");
 const errorDiv = document.querySelector("p.error");
+
+
+// ініціалізація SlimSelect
+const slimSelect = new SlimSelect({
+  select: breedSelect,
+  placeholder: "Select a breed",
+});
+
+// використання iziToast
+iziToast.success({
+  title: "Success",
+  message: "Operation completed successfully",
+});
+
 
 function showLoader() {
   loader.style.display = "block";
