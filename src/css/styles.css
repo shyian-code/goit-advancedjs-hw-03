@@ -28,5 +28,19 @@
 .information {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
+.breed-select {
+  margin-bottom: 15px;
+}
+
+.wrapper {
+  display: flex;
+  column-gap: 30px;
+}
+
+.cat-image {
+  display: block;
+  width: 400px;
+}
