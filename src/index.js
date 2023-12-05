@@ -21,18 +21,28 @@ iziToast.success({
 
 function showLoader() {
   loader.classList.add("visible");
+  breedSelect.classList.add("hidden"); // Приховати select.breed-select
+  catInfoDiv.classList.add("hidden"); // Приховати div.cat-info
+}
+
+function hideBreedSelect() {
+  breedSelect.classList.add("hidden");
 }
 
 function hideLoader() {
   loader.classList.remove("visible");
 }
 
-function showError() {
-  errorDiv.classList.add("visible");
+function showBreedSelect() {
+  breedSelect.classList.remove("hidden");
 }
 
-function hideError() {
-  errorDiv.classList.remove("visible");
+function hideCatInfo() {
+  catInfoDiv.classList.add("hidden");
+}
+
+function showCatInfo() {
+  catInfoDiv.classList.remove("hidden");
 }
 
 function populateBreedSelect(breeds) {
@@ -91,6 +101,7 @@ fetchBreeds()
   .then(breeds => {
     hideLoader();
     populateBreedSelect(breeds);
+    showBreedSelect(); // Показати select.breed-select
   })
   .catch(() => {
     hideLoader();
@@ -104,6 +115,7 @@ breedSelect.addEventListener("change", () => {
   if (selectedBreedId) {
     showLoader();
     hideError();
+    hideBreedSelect(); // Приховати select.breed-select
 
     fetchCatByBreed(selectedBreedId)
       .then(cat => {
