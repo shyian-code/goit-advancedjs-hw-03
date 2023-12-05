@@ -27,6 +27,22 @@ function handleError() {
   error.classList.remove('hidden');
 }
 
+// Функція для завантаження порід котів
+async function loadBreeds() {
+  try {
+    const breeds = await fetchBreeds();
+    // Додати породи до випадаючого списку
+    breeds.forEach((breed) => {
+      const option = document.createElement('option');
+      option.value = breed.id;
+      option.textContent = breed.name;
+      breedSelect.appendChild(option);
+    });
+  } catch (err) {
+    console.error('Error loading breeds:', err);
+  }
+}
+
 // Обробник події для вибору породи кота
 breedSelect.addEventListener('change', async (event) => {
   const selectedBreedId = event.target.value;
@@ -47,22 +63,6 @@ breedSelect.addEventListener('change', async (event) => {
     handleError();
   }
 });
-
-async function loadBreeds() {
-  try {
-    const breeds = await fetchBreeds();
-    console.log('Breeds:', breeds); // Додайте цей рядок для відладки
-    // Додати породи до випадаючого списку
-    breeds.forEach((breed) => {
-      const option = document.createElement('option');
-      option.value = breed.id;
-      option.textContent = breed.name;
-      breedSelect.appendChild(option);
-    });
-  } catch (err) {
-    console.error('Error loading breeds:', err);
-  }
-}
 
 // Виклик функції завантаження порід котів
 loadBreeds();
