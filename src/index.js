@@ -1,6 +1,5 @@
 // main.js
 import SlimSelect from 'slim-select';
-import 'slim-select/dist/css/slimselect.css';
 
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
