@@ -48,9 +48,6 @@ breedSelect.addEventListener('change', async (event) => {
   }
 });
 
-// Виклик функції завантаження порід котів
-loadBreeds();
-
 async function loadBreeds() {
   try {
     const breeds = await fetchBreeds();
@@ -66,6 +63,9 @@ async function loadBreeds() {
     console.error('Error loading breeds:', err);
   }
 }
+
+// Виклик функції завантаження порід котів
+loadBreeds();
 
 // Запуск функції обробки помилок при закритті повідомлення про помилку
 error.addEventListener('close', () => {
