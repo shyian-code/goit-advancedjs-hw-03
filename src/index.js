@@ -55,7 +55,7 @@ function populateBreedSelect(breeds) {
   });
 }
 
-function showCatInfo(cat, origin, country_code, noImage) {
+function displayCatInfo(cat, origin, country_code, noImage) {
   const img = document.createElement("img");
   img.src = cat[0].url;
   img.alt = `${cat[0].breeds[0].name}`;
@@ -120,7 +120,7 @@ breedSelect.addEventListener("change", () => {
     fetchCatByBreed(selectedBreedId)
       .then(cat => {
         hideLoader();
-        showCatInfo(cat);
+        displayCatInfo(cat);
       })
       .catch(() => {
         hideLoader();
