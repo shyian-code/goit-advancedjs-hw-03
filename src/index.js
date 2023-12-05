@@ -1,4 +1,3 @@
-// main.js
 import SlimSelect from 'slim-select';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
@@ -14,10 +13,14 @@ const catInfo = document.querySelector('.cat-info');
 // Функція для відображення інформації про кота
 function displayCatInfo(catData) {
   catInfo.innerHTML = `
-    <h2>${catData[0].breeds[0].name}</h2>
-    <p>Description: ${catData[0].breeds[0].description}</p>
-    <p>Temperament: ${catData[0].breeds[0].temperament}</p>
-    <img src="${catData[0].url}" alt="${catData[0].breeds[0].name}" />
+  <div class="cat-info-wrapper">
+    <img class="cat-image" src="${catData[0].url}" alt="${catData[0].breeds[0].name}" />
+    <div class="text-wrapper">
+      <h2 class="info-title">${catData[0].breeds[0].name}</h2>
+      <p>Description: ${catData[0].breeds[0].description}</p>
+      <p>Temperament: ${catData[0].breeds[0].temperament}</p>
+    </div>
+  </div> 
   `;
 }
 
@@ -25,6 +28,22 @@ function displayCatInfo(catData) {
 function handleError() {
   loader.classList.add('hidden');
   error.classList.remove('hidden');
+}
+
+// Функція для опрацювання стану завантаження
+function handleLoadingState(isLoading) {
+  const customLoader = document.querySelector('.custom-loader');
+  
+  if (isLoading) {
+    breedSelect.classList.add('hidden');
+    catInfo.classList.add('hidden');
+    customLoader.style.display = 'flex'; // Показати завантажувач
+    error.classList.add('hidden');
+  } else {
+    breedSelect.classList.remove('hidden');
+    catInfo.classList.remove('hidden');
+    customLoader.style.display = 'none'; // Приховати завантажувач
+  }
 }
 
 // Функція для завантаження порід котів
@@ -47,22 +66,24 @@ async function loadBreeds() {
 breedSelect.addEventListener('change', async (event) => {
   const selectedBreedId = event.target.value;
   try {
-    // Покажемо завантажувач
-    loader.classList.remove('hidden');
-    error.classList.add('hidden');
+    // Покажемо завантажувач перед виконанням запиту
+    handleLoadingState(true);
 
     // Виклик функції для отримання інформації про кота за ідентифікатором породи
     const catData = await fetchCatByBreed(selectedBreedId);
 
-    // Відобразимо інформацію про кота та приховаємо завантажувач
+    // Відобразимо інформацію про кота
     displayCatInfo(catData);
-    loader.classList.add('hidden');
+
+    // Приховаємо завантажувач після завершення запиту
+    handleLoadingState(false);
   } catch (err) {
     console.error('Error fetching cat data:', err);
     // Обробка помилки
     handleError();
   }
 });
+
 
 // Виклик функції завантаження порід котів
 loadBreeds();
