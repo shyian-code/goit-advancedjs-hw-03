@@ -24,6 +24,13 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
 
 .information {
   display: flex;

@@ -1,6 +1,6 @@
 // main.js
 import SlimSelect from 'slim-select';
-import 'slim-select/dist/slimselect.min.css';
+
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
@@ -26,19 +26,19 @@ iziToast.success({
 
 
 function showLoader() {
-  loader.style.display = "block";
+  loader.classList.add("visible");
 }
 
 function hideLoader() {
-  loader.style.display = "none";
+  loader.classList.remove("visible");
 }
 
 function showError() {
-  errorDiv.style.display = "block";
+  errorDiv.classList.add("visible");
 }
 
 function hideError() {
-  errorDiv.style.display = "none";
+  errorDiv.classList.remove("visible");
 }
 
 function populateBreedSelect(breeds) {
