@@ -4,7 +4,7 @@ import SlimSelect from 'slim-select';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-import { fetchBreeds, fetchCatByBreed } from "./js/api.js";
+import { fetchBreeds, fetchCatByBreed } from "./js/cat-api.js";
 
 const breedSelect = document.querySelector("select.breed-select");
 const catInfoDiv = document.querySelector("div.cat-info");
