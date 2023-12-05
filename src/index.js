@@ -12,12 +12,12 @@ const loader = document.querySelector("p.loader");
 const errorDiv = document.querySelector("p.error");
 
 
-const slimSelect = new SlimSelect({
-  select: breedSelect,
-  settings: {
-    placeholderText: 'Search breeds',
-  },
-});
+// const slimSelect = new SlimSelect({
+//   select: breedSelect,
+//   settings: {
+//     placeholderText: 'Search breeds',
+//   },
+// });
 
 // використання iziToast
 iziToast.success({
