@@ -6,10 +6,10 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 import { fetchBreeds, fetchCatByBreed } from "./js/cat-api.js";
 
-const breedSelect = document.querySelector("select.breed-select");
-const catInfoDiv = document.querySelector("div.cat-info");
-const loader = document.querySelector("p.loader");
-const errorDiv = document.querySelector("p.error");
+const breedSelect = document.querySelector('.breed-select');
+const catInfoDiv = document.querySelector('.cat-info');
+const loader = document.querySelector('.loader');
+const errorDiv = document.querySelector('.error');
 
 
 // const slimSelect = new SlimSelect({
@@ -28,8 +28,8 @@ iziToast.success({
 
 function showLoader() {
   loader.classList.add("visible");
-  breedSelect.classList.add("hidden"); // Приховати select.breed-select
-  catInfoDiv.classList.add("hidden"); // Приховати div.cat-info
+  breedSelect.classList.add("hidden");
+  catInfoDiv.classList.add("hidden"); 
 }
 
 function hideBreedSelect() {
