@@ -73,3 +73,7 @@
   display: block;
   max-width: 400px;
 }
+
+.info-title {
+  margin-bottom: 15px;
+}

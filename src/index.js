@@ -12,6 +12,13 @@ const loader = document.querySelector("p.loader");
 const errorDiv = document.querySelector("p.error");
 
 
+const slimSelect = new SlimSelect({
+  select: breedSelect,
+  settings: {
+    placeholderText: 'Search breeds',
+  },
+});
+
 // використання iziToast
 iziToast.success({
   title: "Success",
@@ -82,7 +89,7 @@ function displayCatInfo(cat, origin, country_code, noImage) {
   wrapperDiv.innerHTML = `
     <img class="cat-img" width="400" src="${img.src}" alt="${img.alt}">
     <div class="info-wrap">
-      <h2 class="text">${breedName.textContent}</h2>
+      <h2 class="info-title">${breedName.textContent}</h2>
       <p><b class="primary">Description:</b> ${description.textContent}</p>
       <p><b class="primary">Temperament:</b> ${temperament.textContent}</p>
       <p><b class="primary">Country:</b> ${origin}</p>
