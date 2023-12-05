@@ -92,7 +92,10 @@ function displayCatInfo(cat, origin, country_code, noImage) {
       <h2 class="info-title">${breedName.textContent}</h2>
       <p><b class="primary">Description:</b> ${description.textContent}</p>
       <p><b class="primary">Temperament:</b> ${temperament.textContent}</p>
-      <p><b class="primary">Country:</b> ${origin}</p>
+      <div>
+        <p><b class="primary">Country:</b> ${origin}</p>
+        <img class="cat-img" width="400" src="${countryImg.src}" alt="${countryImg.alt}">
+      </div>
     </div>
   `;
 
