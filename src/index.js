@@ -64,7 +64,19 @@ function showCatInfo(cat) {
   const temperament = document.createElement("p");
   temperament.textContent = `Temperament: ${cat[0].breeds[0].temperament}`;
 
-  catInfoDiv.innerHTML = "";
+  catInfoDiv.innerHTML = `
+    <div class="wrapper">
+      <img class="cat-img" src="${img}" alt="${breedName}"/>
+      <div class="info-wrap">
+        <h2 class="text">${breedName}</h2>
+        <p><b class="primary">Description:</b> ${description}</p>
+        <p><b class="primary">Temperament:</b> ${temperament}</p>
+        <p><b class="primary">Country:</b> ${origin}</p>
+        <img src="https://flagsapi.com/${country_code}/shiny/64.png" alt="${origin}" onerror="src='${noImage}'" style="width: 64px;">
+      </div>
+    </div>
+  `;
+
   catInfoDiv.appendChild(img);
   catInfoDiv.appendChild(breedName);
   catInfoDiv.appendChild(description);
