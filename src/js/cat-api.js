@@ -3,48 +3,22 @@ import axios from "axios";
 
 axios.defaults.headers.common["x-api-key"] = "live_8dopgEoZqjLeDX5BcU4nL2k4qRgKONIXj7FAVN0qokHbLiZxLlebiy9Al26Wgzgs";
 
-export const fetchBreeds = async () => {
+// Функція для отримання інформації про породи котів
+export async function fetchBreeds() {
   try {
-    showLoader();
-    hideError();
-    const response = await axios.get("https://api.thecatapi.com/v1/breeds");
-    hideLoader();
+    const response = await axios.get('https://api.thecatapi.com/v1/breeds');
     return response.data;
   } catch (error) {
-    hideLoader();
-    showError();
     throw error;
   }
-};
+}
 
-export const fetchCatByBreed = async (breedId) => {
+// Функція для отримання інформації про кота за ідентифікатором породи
+export async function fetchCatByBreed(breedId) {
   try {
-    showLoader();
-    hideError();
-    const response = await axios.get(
-      `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`
-    );
-    hideLoader();
+    const response = await axios.get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`);
     return response.data;
   } catch (error) {
-    hideLoader();
-    showError();
     throw error;
   }
-};
-
-const showLoader = () => {
-  document.querySelector(".loader").style.display = "block";
-};
-
-const hideLoader = () => {
-  document.querySelector(".loader").style.display = "none";
-};
-
-const showError = () => {
-  document.querySelector(".error").style.display = "block";
-};
-
-const hideError = () => {
-  document.querySelector(".error").style.display = "none";
-};
+}

@@ -24,30 +24,12 @@
   -webkit-text-size-adjust: 100%;
 }
 
-/* Зменште розмір стрілки у dropdown SlimSelect */
-.slim-select .ss-arrow,
-.slim-select .ss-arrow-active {
-  font-size: 12px; /* Змініть розмір за необхідністю */
-}
-
-/* Збільште зазор між dropdown і сумісним елементом */
-.slim-select .ss-dropdown {
-  margin-top: 10px;
-}
-
-/* Збільште зазор між текстом і стрілкою */
-.slim-select .ss-selected,
-.slim-select .ss-search,
-.slim-select .ss-search input {
-  padding-right: 20px; /* Змініть розмір за необхідністю */
+.loading {
+  display: block;
 }
 
 .hidden {
   display: none;
-}
-
-.visible {
-  display: block;
 }
 
 .information {

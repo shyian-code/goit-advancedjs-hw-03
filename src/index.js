@@ -5,64 +5,53 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 import { fetchBreeds, fetchCatByBreed } from "./js/cat-api.js";
 
-const breedSelect = document.querySelector(".breed-select");
-const catInfoDiv = document.querySelector(".cat-info");
-const loader = document.querySelector(".loader");
-const error = document.querySelector(".error");
-
-// Створюємо SlimSelect для стилізації селекту
-const slim = new SlimSelect({
-  select: ".breed-select"
-});
-
-// Заповнюємо селект порід при завантаженні сторінки
-document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    const breeds = await fetchBreeds();
-
-    // Очищаємо та оновлюємо опції у SlimSelect
-    slim.setData(breeds.map(breed => ({ text: breed.name, value: breed.id })));
-
-  } catch (error) {
-    console.error("Помилка отримання порід:", error);
-  }
-});
-
-// Обробка події вибору породи
-breedSelect.addEventListener("change", async () => {
-  const selectedBreedId = breedSelect.value;
-  try {
-    showLoader();
-    hideError();
-    const catData = await fetchCatByBreed(selectedBreedId);
-    displayCatInfo(catData);
-  } catch (error) {
-    hideLoader();
-    showError();
-    console.error("Помилка отримання інформації про кота:", error);
-  }
-});
+// Вибір DOM-елементів
+const breedSelect = document.querySelector('.breed-select');
+const loader = document.querySelector('.loader');
+const error = document.querySelector('.error');
+const catInfo = document.querySelector('.cat-info');
 
 // Функція для відображення інформації про кота
-const displayCatInfo = (catData) => {
-  const cat = catData[0];
-  const image = cat.url;
-  const breedName = cat.breeds[0].name;
-  const description = cat.breeds[0].description;
-  const temperament = cat.breeds[0].temperament;
-
-  // Відображаємо зображення та інформацію про кота
-  const catImage = document.createElement("img");
-  catImage.src = image;
-  catInfoDiv.innerHTML = `
-    <div>
-      <h3>${breedName}</h3>
-      <p><strong>Description:</strong> ${description}</p>
-      <p><strong>Temperament:</strong> ${temperament}</p>
-    </div>
+function displayCatInfo(catData) {
+  catInfo.innerHTML = `
+    <h2>${catData[0].breeds[0].name}</h2>
+    <p>Description: ${catData[0].breeds[0].description}</p>
+    <p>Temperament: ${catData[0].breeds[0].temperament}</p>
+    <img src="${catData[0].url}" alt="${catData[0].breeds[0].name}" />
   `;
-  catInfoDiv.appendChild(catImage);
+}
 
-  hideLoader();
-  catInfoDiv.style.display = "block";
-};
+// Функція для обробки помилок
+function handleError() {
+  loader.classList.add('hidden');
+  error.classList.remove('hidden');
+}
+
+// Обробник події для вибору породи кота
+breedSelect.addEventListener('change', async (event) => {
+  const selectedBreedId = event.target.value;
+  try {
+    // Покажемо завантажувач
+    loader.classList.remove('hidden');
+    error.classList.add('hidden');
+
+    // Виклик функції для отримання інформації про кота за ідентифікатором породи
+    const catData = await fetchCatByBreed(selectedBreedId);
+
+    // Відобразимо інформацію про кота та приховаємо завантажувач
+    displayCatInfo(catData);
+    loader.classList.add('hidden');
+  } catch (err) {
+    console.error('Error fetching cat data:', err);
+    // Обробка помилки
+    handleError();
+  }
+});
+
+// Виклик функції завантаження порід котів
+loadBreeds();
+
+// Запуск функції обробки помилок при закритті повідомлення про помилку
+error.addEventListener('close', () => {
+  error.classList.add('hidden');
+});
