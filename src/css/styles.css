@@ -56,10 +56,6 @@
   text-align: center;
 }
 
-.breed-select {
-  margin-bottom: 15px;
-}
-
 .wrapper {
   display: flex;
   column-gap: 30px;

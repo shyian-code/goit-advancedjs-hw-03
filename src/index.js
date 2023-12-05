@@ -12,12 +12,6 @@ const loader = document.querySelector("p.loader");
 const errorDiv = document.querySelector("p.error");
 
 
-// ініціалізація SlimSelect
-const slimSelect = new SlimSelect({
-  select: breedSelect,
-  placeholder: "Select a breed",
-});
-
 // використання iziToast
 iziToast.success({
   title: "Success",
