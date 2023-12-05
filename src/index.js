@@ -17,8 +17,8 @@ function displayCatInfo(catData) {
     <img class="cat-image" src="${catData[0].url}" alt="${catData[0].breeds[0].name}" />
     <div class="text-wrapper">
       <h2 class="info-title">${catData[0].breeds[0].name}</h2>
-      <p>Description: ${catData[0].breeds[0].description}</p>
-      <p>Temperament: ${catData[0].breeds[0].temperament}</p>
+      <p><span>Description:</span> ${catData[0].breeds[0].description}</p>
+      <p><span>Temperament:</span> ${catData[0].breeds[0].temperament}</p>
     </div>
   </div> 
   `;
