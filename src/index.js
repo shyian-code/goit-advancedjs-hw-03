@@ -19,6 +19,7 @@ function displayCatInfo(catData) {
       <h2 class="info-title">${catData[0].breeds[0].name}</h2>
       <p><span>Description:</span> ${catData[0].breeds[0].description}</p>
       <p><span>Temperament:</span> ${catData[0].breeds[0].temperament}</p>
+      <p><span>Country:<span> ${catData[0].breeds[0].origin}</p>
     </div>
   </div> 
   `;
