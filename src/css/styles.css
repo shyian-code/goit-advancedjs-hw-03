@@ -24,8 +24,6 @@
   -webkit-text-size-adjust: 100%;
 }
 
-
-
 /* Зменште розмір стрілки у dropdown SlimSelect */
 .slim-select .ss-arrow,
 .slim-select .ss-arrow-active {
@@ -56,12 +54,22 @@
   text-align: center;
 }
 
+.cat-info {
+  margin-top: 30px;
+}
+
 .wrapper {
   display: flex;
   column-gap: 30px;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.info-wrapper {
+  text-align: left;
 }
 
 .cat-image {
   display: block;
-  width: 400px;
+  max-width: 400px;
 }

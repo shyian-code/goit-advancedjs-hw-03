@@ -70,7 +70,7 @@ function showCatInfo(cat, origin, country_code, noImage) {
   const wrapperDiv = document.createElement("div");
   wrapperDiv.classList.add("wrapper");
   wrapperDiv.innerHTML = `
-    <img class="cat-img" src="${img.src}" alt="${img.alt}">
+    <img class="cat-img" width="400" src="${img.src}" alt="${img.alt}">
     <div class="info-wrap">
       <h2 class="text">${breedName.textContent}</h2>
       <p><b class="primary">Description:</b> ${description.textContent}</p>
